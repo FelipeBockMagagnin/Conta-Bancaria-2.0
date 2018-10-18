@@ -8,5 +8,6 @@ objeto da classe Cliente (suponhamos que uma conta pertença a apenas um cliente
 
 public class Cliente {
     public String nome;
+    public int idade;
 
 }

@@ -17,7 +17,7 @@ public class ContaBancaria {
     private double saldo = 0;
     public  double limiteSaque = 1000;
     private double taxaSaque;
-    public Cliente cliente;
+    public Cliente cliente = new Cliente();
     private String numero;
 
     ArrayList<Cartao> cartao = new ArrayList();
@@ -35,20 +35,19 @@ public class ContaBancaria {
         }
     }
 
-    void adicionarCartaoCredito(String numero, String conta){
-        Cartao cart = new CartaoCredito(numero, "Conta do" + cliente);
+    void adicionarCartaoCredito(CartaoCredito cart){
         cartao.add(cart);
+        System.out.println("adicionado com sucesso");
     }
 
-    void adicionarCartãoDebito(String numero, String conta){
-        Cartao cart = new CartaoDebito(numero, "Conta do" + cliente);
+    void adicionarCartãoDebito(CartaoDebito cart){
         cartao.add(cart);
+        System.out.println("adicionado com sucesso");
     }
 
-    ContaBancaria(String nome, String telefone, String cpf){
+    ContaBancaria(String nome, String telefone){
         cliente.nome = nome;
         numero = telefone;
-        //cpfCliente = cpf;
     }
 
     public void modificaSaldo(double saldo) {
@@ -63,12 +62,13 @@ public class ContaBancaria {
     void paga(Cartao cartaoPgto, ContaBancaria contaPgto, double valor){
         if(cartaoPgto instanceof CartaoDebito){
             contaPgto.modificaSaldo(-valor);
+            System.out.println("Pago com cartão de debito");
             this.deposita(valor);
 
         } else if (cartaoPgto instanceof CartaoCredito) {
             if(((CartaoCredito) cartaoPgto).limite >= ((CartaoCredito) cartaoPgto).valorGasto){
                 ((CartaoCredito) cartaoPgto).valorGasto = ((CartaoCredito) cartaoPgto).valorGasto + valor;
-                System.out.println("Pago");
+                System.out.println("Pago com cartão de credito");
                 deposita(valor);
             } else {
                 System.out.println("Acima do limite do cartão");

@@ -18,28 +18,36 @@ public class Banco {
 
         Scanner scan = new Scanner(System.in);
 
-        String nome, cpf, numero;
-        int idade, input;
-        boolean finalizar = false;
+        Pessoa pessoa = new Pessoa("Carlos", 18);
 
 
-        System.out.print("Digite seu nome: ");
-        nome = scan.next();
-        System.out.print("Digite sua idade: ");
-        idade = scan.nextInt();
-        System.out.println("Digite seu numero de telefone: ");
-        numero = scan.next();
-
-        //pessoa criada com sucesso
-        Pessoa pessoa = new Pessoa(nome, idade);
+        PessoaFisica pesfis = new PessoaFisica("000.000.000-00", "carlos", 18);
+        pesfis.setCpf("111.111.111-11");
 
 
-        System.out.print("Escreva seu cpf (sem caracteres especiais): ");
-        cpf = scan.next();
+        ContaBancaria conta = new ContaBancaria("carlos", "3461-2208");
 
-        pessoa.setCpf(cpf);
+        ContaBancaria conta2 = new ContaBancaria("carlos", "3461-5823");
 
-        ContaBancaria conta = new ContaBancaria(nome, numero, pessoa.getCpf());
-        System.out.println("Conta criada com sucesso");
+        CartaoDebito cart = new CartaoDebito("213871928", "shauihdadauhsdi");
+        conta.adicionarCartãoDebito(cart);
+
+
+        CartaoCredito cart2 = new CartaoCredito("414134324", "fwfewffsef");
+        conta.adicionarCartaoCredito(cart2);
+
+        conta.paga(cart,conta2,23);
+        conta.paga(cart2,conta2,23);
+
+        conta.pagaCartoes();
+
+
+
+
+
+
+
+
+
     }
 }

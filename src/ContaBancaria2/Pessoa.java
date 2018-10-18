@@ -13,9 +13,8 @@ package ContaBancaria2;
  */
 public class Pessoa {
   // atributos
-  private String cpf;
   private String nome;
-  private int idade;
+  public int idade;
   public boolean vivo = true;
   private int IDADE_MAX = 130;
 
@@ -30,15 +29,10 @@ public class Pessoa {
     public void setCpf(String cpf) {
        if(validaCpf(cpf)){
            System.out.println("Cpf valido");
-           this.cpf = cpf;
        } else {
            System.out.println("Cpf invalido");
        }
     }
-  
-  public String getCpf() {
-    return cpf;
-  }
   
   public String getNome(){
       return nome;
